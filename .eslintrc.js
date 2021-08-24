@@ -3,17 +3,13 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: [
-    'airbnb-base',
-  ],
+  extends: ['airbnb-base'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
   },
-  plugins: [
-    '@typescript-eslint',
-  ],
+  plugins: ['@typescript-eslint'],
   settings: {
     'import/resolver': {
       node: {
@@ -34,5 +30,6 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'class-methods-use-this': 'off',
   },
 };
