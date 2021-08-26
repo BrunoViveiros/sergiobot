@@ -10,7 +10,7 @@ import * as fs from 'fs';
 
 import { ICommand, IClient } from './types/common';
 
-// import './database/index.ts';
+import './database/index.ts';
 
 dotenv.config();
 
