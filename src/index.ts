@@ -35,8 +35,6 @@ client.once('ready', () => {
 });
 
 client.on('interactionCreate', async (interaction) => {
-  console.log(interaction);
-
   if (!interaction.isCommand()) return;
 
   const command = client.commands.get(interaction.commandName);
@@ -51,6 +49,14 @@ client.on('interactionCreate', async (interaction) => {
       content: 'There was an error while executing this command!',
       ephemeral: true,
     });
+  }
+});
+
+client.on('interactionCreate', async(interaction) => {
+  if(!interaction.isButton()) return;
+
+  if(interaction.customId === 'test-button') {
+    interaction.reply(`${interaction.user.username} iiiih`)
   }
 });
 

@@ -1,4 +1,4 @@
-import { CommandInteraction } from 'discord.js';
+import { CommandInteraction, MessageActionRow, MessageButton } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 
 const command = {
