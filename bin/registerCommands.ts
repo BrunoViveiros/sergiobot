@@ -13,20 +13,26 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 const commands = [];
 
 fs.readdirSync(resolve(__dirname, '..', 'src', 'commands')).forEach((dir) => {
-  fs.readdirSync(resolve(__dirname, '..', 'src', 'commands', dir)).filter((file) => file.endsWith('.ts')).forEach((file) => {
-    const command = require(resolve(__dirname, '..', 'src', 'commands', dir, file));
-    commands.push(command.default.data.toJSON());
-  });
+  fs.readdirSync(resolve(__dirname, '..', 'src', 'commands', dir))
+    .filter((file) => file.endsWith('.ts'))
+    .forEach((file) => {
+      const command = require(resolve(
+        __dirname,
+        '..',
+        'src',
+        'commands',
+        dir,
+        file,
+      ));
+      commands.push(command.default.data.toJSON());
+    });
 });
 
 (async () => {
   try {
     console.log('Started refreshing application (/) commands.');
 
-    await rest.put(
-      Routes.applicationCommands(clientId),
-      { body: commands },
-    );
+    await rest.put(Routes.applicationCommands(clientId), { body: commands });
 
     console.log('Successfully reloaded application (/) commands.');
   } catch (error) {
