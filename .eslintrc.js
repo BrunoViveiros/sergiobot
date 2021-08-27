@@ -3,13 +3,13 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ['airbnb-base'],
+  extends: ['airbnb-base', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'prettier'],
   settings: {
     'import/resolver': {
       node: {
@@ -18,6 +18,7 @@ module.exports = {
     },
   },
   rules: {
+    'prettier/prettier': 'error',
     'import/no-dynamic-require': 'off',
     'global-require': 'off',
     'import/extensions': [

@@ -1,14 +1,14 @@
-import getGuildsRepository from "../repositories/getGuildsRepository";
+import getGuildsRepository from '../repositories/getGuildsRepository';
 
 interface params {
-    name:string
+  name: string;
 }
 
 class CreateGuildService {
-    execute({name}:params){
-       const guildsRepository = getGuildsRepository()
-       guildsRepository.save({name})
-    }
+  execute({ name }: params) {
+    const guildsRepository = getGuildsRepository();
+    guildsRepository.save({ name });
+  }
 }
 
-export default CreateGuildService
+export default CreateGuildService;

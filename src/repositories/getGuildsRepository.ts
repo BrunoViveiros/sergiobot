@@ -1,9 +1,7 @@
-import { getRepository } from "typeorm";
+import { getRepository } from 'typeorm';
 
-import Guild from "../models/Guild";
+import Guild from '../models/Guild';
 
-const getGuildsRepository = () => {
-    return getRepository(Guild)
-}
+const getGuildsRepository = () => getRepository(Guild);
 
-export default getGuildsRepository
+export default getGuildsRepository;
