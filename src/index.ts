@@ -52,11 +52,11 @@ client.on('interactionCreate', async (interaction) => {
   }
 });
 
-client.on('interactionCreate', async(interaction) => {
-  if(!interaction.isButton()) return;
+client.on('interactionCreate', async (interaction) => {
+  if (!interaction.isButton()) return;
 
-  if(interaction.customId === 'test-button') {
-    interaction.reply(`${interaction.user.username} iiiih`)
+  if (interaction.customId === 'test-button') {
+    interaction.reply(`${interaction.user.username} iiiih`);
   }
 });
 
