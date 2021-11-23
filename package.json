@@ -21,6 +21,7 @@
     "node-fetch": "^2.6.1",
     "pg": "^8.7.1",
     "skia-canvas": "^0.9.25",
+    "swiftcord": "^2.1.7",
     "typeorm": "^0.2.37"
   },
   "devDependencies": {
