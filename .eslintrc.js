@@ -32,5 +32,6 @@ module.exports = {
       },
     ],
     'class-methods-use-this': 'off',
+    'no-useless-escape': 'off',
   },
 };
