@@ -8,7 +8,7 @@ import * as fs from 'fs';
 
 import { ICommand, IClient } from './types/common';
 
-import './database';
+// import './database';
 
 dotenv.config();
 
