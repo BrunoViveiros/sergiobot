@@ -13,6 +13,7 @@
     "@discordjs/builders": "^0.5.0",
     "@discordjs/rest": "^0.1.0-canary.0",
     "@types/node-fetch": "^2.5.12",
+    "canvacord": "^5.2.3",
     "canvas": "^2.8.0",
     "canvas-constructor": "^5.0.1",
     "discord-api-types": "^0.22.0",
@@ -21,7 +22,6 @@
     "node-fetch": "^2.6.1",
     "pg": "^8.7.1",
     "skia-canvas": "^0.9.25",
-    "swiftcord": "^2.1.7",
     "typeorm": "^0.2.37"
   },
   "devDependencies": {

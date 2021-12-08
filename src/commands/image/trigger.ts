@@ -1,27 +1,53 @@
 import { CommandInteraction, MessageAttachment } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { Swiftcord } from 'swiftcord';
-
-const cord = new Swiftcord();
+import { Canvacord } from 'canvacord';
 
 const command = {
   data: new SlashCommandBuilder()
     .setName('trigger')
     .setDescription('Alguem ta pistola')
-    .addStringOption((option) =>
-      option
-        .setName('alvo')
-        .setDescription('Quem está pistola? (URL)')
-        .setRequired(true),
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('url')
+        .setDescription('Usar uma imagem da internet')
+        .addStringOption((option) =>
+          option
+            .setName('link')
+            .setDescription('Link  da imagem')
+            .setRequired(true),
+        ),
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('user')
+        .setDescription('Usar um avatar de usuário')
+        .addUserOption((option) =>
+          option
+            .setName('alvo')
+            .setDescription('Usuário alvo')
+            .setRequired(true),
+        ),
     ),
   async execute(interaction: CommandInteraction) {
-    const imageUrl = interaction.options.getString('alvo');
+    const subcommand = interaction.options.getSubcommand();
+    let imageUrl;
 
-    const triggeredImage = await cord.trigger(imageUrl);
+    if (subcommand === 'url') {
+      imageUrl = interaction.options.getString('link');
+    } else if (subcommand === 'user') {
+      const user = interaction.options.getUser('alvo');
+      imageUrl = user.displayAvatarURL({ dynamic: true, format: 'png' });
+    }
 
-    const attachment = new MessageAttachment(triggeredImage, 'trigger.gif');
+    try {
+      const triggeredImage = await Canvacord.trigger(imageUrl);
 
-    await interaction.reply({ files: [attachment] });
+      const attachment = new MessageAttachment(triggeredImage, 'trigger.gif');
+
+      await interaction.reply({ files: [attachment] });
+    } catch {
+      await interaction.reply('Não consegui fazer o trigger');
+    }
   },
 };
 
