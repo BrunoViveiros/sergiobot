@@ -40,7 +40,7 @@ const command = {
     }
 
     try {
-      const affectedImage = await Canvacord.affect(imageUrl);
+      const affectedImage = await Canvacord.beautiful(imageUrl);
 
       const attachment = new MessageAttachment(affectedImage, 'beautiful.png');
 
