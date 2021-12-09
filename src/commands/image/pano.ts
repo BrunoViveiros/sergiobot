@@ -30,17 +30,24 @@ const command = {
 
     const target = interaction.options.getString('alvo');
 
-    const img = new Canvas(720, 521)
-      .printImage(bg, 0, 0, 720, 521)
-      .setTextFont('34px')
-      .setTextAlign('center')
-      .setColor('#fff')
-      .printWrappedText(`aiai ess${suffix} ${target}`, 530, 300, 260);
+    try {
+      const img = new Canvas(720, 521)
+        .printImage(bg, 0, 0, 720, 521)
+        .setTextFont('34px')
+        .setTextAlign('center')
+        .setColor('#fff')
+        .printWrappedText(`aiai ess${suffix} ${target}`, 530, 300, 260);
 
-    const imgBuffer = await img.toBuffer('png');
-    const attachment = new MessageAttachment(imgBuffer, 'pano.png');
+      const imgBuffer = await img.toBuffer('png');
+      const attachment = new MessageAttachment(imgBuffer, 'pano.png');
 
-    await interaction.reply({ files: [attachment] });
+      await interaction.reply({ files: [attachment] });
+    } catch {
+      await interaction.reply({
+        content: 'Não consegui fazer o pano',
+        ephemeral: true,
+      });
+    }
   },
 };
 

@@ -19,17 +19,24 @@ const command = {
 
     const quote = interaction.options.getString('praga');
 
-    const img = new Canvas(1080, 649)
-      .printImage(bg, 0, 0, 1080, 649)
-      .setTextFont('46px')
-      .setTextAlign('center')
-      .setColor('#000')
-      .printWrappedText(quote, 260, 350, 120);
+    try {
+      const img = new Canvas(1080, 649)
+        .printImage(bg, 0, 0, 1080, 649)
+        .setTextFont('46px')
+        .setTextAlign('center')
+        .setColor('#000')
+        .printWrappedText(quote, 260, 350, 120);
 
-    const imgBuffer = await img.toBuffer('png');
-    const attachment = new MessageAttachment(imgBuffer, 'morre.png');
+      const imgBuffer = await img.toBuffer('png');
+      const attachment = new MessageAttachment(imgBuffer, 'morre.png');
 
-    await interaction.reply({ files: [attachment] });
+      await interaction.reply({ files: [attachment] });
+    } catch {
+      await interaction.reply({
+        content: 'Não consegui fazer o morrepraga',
+        ephemeral: true,
+      });
+    }
   },
 };
 

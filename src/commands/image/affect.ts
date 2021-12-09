@@ -4,8 +4,8 @@ import { Canvacord } from 'canvacord';
 
 const command = {
   data: new SlashCommandBuilder()
-    .setName('trigger')
-    .setDescription('Alguem ta pistola')
+    .setName('affect')
+    .setDescription('Não, isso não afeta meu bebê')
     .addSubcommand((subcommand) =>
       subcommand
         .setName('url')
@@ -40,14 +40,14 @@ const command = {
     }
 
     try {
-      const triggeredImage = await Canvacord.trigger(imageUrl);
+      const affectedImage = await Canvacord.affect(imageUrl);
 
-      const attachment = new MessageAttachment(triggeredImage, 'trigger.gif');
+      const attachment = new MessageAttachment(affectedImage, 'affected.png');
 
       await interaction.reply({ files: [attachment] });
     } catch {
       await interaction.reply({
-        content: 'Não consegui fazer o trigger',
+        content: 'Não consegui fazer o affect',
         ephemeral: true,
       });
     }

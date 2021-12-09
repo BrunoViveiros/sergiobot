@@ -29,16 +29,23 @@ const command = {
 
     const quote = interaction.options.getString('quote');
 
-    const img = new Canvas(600, 315)
-      .printImage(bg, 0, 0, 600, 315)
-      .setTextFont('24px')
-      .setColor('#fff')
-      .printWrappedText(`— ${quote}`, 30, 80, 300);
+    try {
+      const img = new Canvas(600, 315)
+        .printImage(bg, 0, 0, 600, 315)
+        .setTextFont('24px')
+        .setColor('#fff')
+        .printWrappedText(`— ${quote}`, 30, 80, 300);
 
-    const imgBuffer = await img.toBuffer('png');
-    const attachment = new MessageAttachment(imgBuffer, 'frase.png');
+      const imgBuffer = await img.toBuffer('png');
+      const attachment = new MessageAttachment(imgBuffer, 'frase.png');
 
-    await interaction.reply({ files: [attachment] });
+      await interaction.reply({ files: [attachment] });
+    } catch {
+      await interaction.reply({
+        content: 'Não consegui fazer a frase',
+        ephemeral: true,
+      });
+    }
   },
 };
 

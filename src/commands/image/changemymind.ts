@@ -22,7 +22,10 @@ const command = {
 
       await interaction.reply({ files: [attachment] });
     } catch {
-      await interaction.reply('Não consegui fazer o trigger');
+      await interaction.reply({
+        content: 'Não consegui fazer o changemymind',
+        ephemeral: true,
+      });
     }
   },
 };
