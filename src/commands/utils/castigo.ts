@@ -25,7 +25,7 @@ const command = {
     );
 
     const message = (await interaction.reply({
-      content: `**CASTIGO**:\n\nO povo deseja castigar ${target}, se você concorda, reaja a esta mensagem com ✅, se não, vote com ❌.\n\nA votação dura 1 minuto e requer 5 votos, se não houver 5 votos até o final, será cancelada e ninguém será castigado.`,
+      content: `**CASTIGO**:\n\nO povo deseja castigar ${target}, se você concorda, reaja a esta mensagem com ✅, se não, vote com ❌.\n\nA votação dura 1 minuto e requer 4 votos, se não houver 5 votos até o final, será cancelada e ninguém será castigado.`,
       fetchReply: true,
     })) as Message;
 
@@ -42,7 +42,7 @@ const command = {
     try {
       const collected = await message.awaitReactions({
         filter: emojiFilter,
-        max: 3,
+        max: 4,
         time: 60000,
         errors: ['time'],
       });
