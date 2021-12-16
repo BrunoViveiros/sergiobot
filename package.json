@@ -21,8 +21,8 @@
     "dotenv": "^10.0.0",
     "node-fetch": "^2.6.1",
     "pg": "^8.7.1",
-    "ts-node": "^10.2.0",
     "skia-canvas": "^0.9.25",
+    "ts-node": "^10.2.0",
     "typeorm": "^0.2.37"
   },
   "devDependencies": {
