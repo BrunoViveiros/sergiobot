@@ -20,7 +20,9 @@ const command = {
       .filter((role) => role.id !== guild.id)
       .map((role) => role.id);
 
-    const punishmentRole = guild.roles.cache.get('920796825856901181');
+    const punishmentRole = guild.roles.cache.get(
+      process.env.PUNISHMENT_ROLE_ID,
+    );
 
     const message = (await interaction.reply({
       content: `**CASTIGO**:\n\nO povo deseja castigar ${target}, se você concorda, reaja a esta mensagem com ✅, se não, vote com ❌.\n\nA votação dura 1 minuto e requer 5 votos, se não houver 5 votos até o final, será cancelada e ninguém será castigado.`,
@@ -32,13 +34,15 @@ const command = {
 
     const getTempRole = (role) => guild.roles.cache.get(role);
 
-    const emojiFilter = (reaction, user) =>
-      ['✅', '❌'].includes(reaction.emoji.name) && !user.bot;
+    const emojiFilter = (reaction, user) => {
+      console.log(['✅', '❌'].includes(reaction.emoji.name), !user.bot);
+      return ['✅', '❌'].includes(reaction.emoji.name) && !user.bot;
+    };
 
     try {
       const collected = await message.awaitReactions({
         filter: emojiFilter,
-        max: 2,
+        max: 3,
         time: 60000,
         errors: ['time'],
       });
@@ -50,6 +54,8 @@ const command = {
       const upvote = votes.filter((vote) => vote.name === '✅')[0]?.count || 0;
       const downvote =
         votes.filter((vote) => vote.name === '❌')[0]?.count || 0;
+
+      console.log(upvote, downvote);
       if (upvote > downvote) {
         await targetMember.roles.set([punishmentRole]);
 
@@ -77,8 +83,9 @@ const command = {
         );
       }
     } catch (err) {
+      console.log(err);
       interaction.followUp(
-        `acabou o tempo e a votação não atingiu um resultado.\n${target} não será castigado.`,
+        `Acabou o tempo e a votação não atingiu um resultado.\n${target} não será castigado.`,
       );
     }
   },
